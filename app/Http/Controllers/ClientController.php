@@ -23,7 +23,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Client::create($data);
+        Client::create($data); 
         
         return response()->json(['dados criados com sucesso!' => $data], 201);
     }
@@ -32,10 +32,12 @@ class ClientController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $data = Client::find($id);
+    {        
+        $data = Client::find($id);        
+        $data->vehicle;
         return response()->json(['Aqui está o registo procurado:', $data]);
     }
+     
 
     /**
      * Update the specified resource in storage.
@@ -43,10 +45,10 @@ class ClientController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $client_id = Client::findOrFail($id);
-        $client_id->update($data);
+        $client = Client::findOrFail($id);
+        $client->update($data);
 
-        return response()->json(['dados atualizados com sucesso!']);
+        return response()->json(['dados atualizados com sucesso!', $data]);
 
     }
 

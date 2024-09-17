@@ -14,7 +14,7 @@ class VehicleController extends Controller
     public function index()
     {
         $data = Vehicle::all();
-        return response()->json(['Aqui está os dados solicitados!', $data], 200);
+        return response()->json(['Aqui está a lista de todos os veículos cadastrados!', $data], 200);
     }
 
     /**
@@ -33,7 +33,8 @@ class VehicleController extends Controller
     public function show(string $id)
     {
         $data = Vehicle::find($id);
-        return response()->json(['aqui está registro solicitado', $data]);
+        $data->client;
+        return response()->json(['Aqui está o registro solicitado', $data]);
     }
 
     /**
